@@ -147,6 +147,10 @@ public class VentanaCliente extends JFrame implements ActionListener {
 		String telefono = txtTelefono.getText();
 		String direccion = txtDireccion.getText();
 		
+		if (txtNombre.getText().isEmpty() || txtDocumento.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtDireccion.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
+			return;
+		}
 		Cliente cliente = new Cliente(nombre, dni, telefono, direccion);
 		
 		Datos.clientes.add(cliente);
