@@ -34,4 +34,9 @@ public class Mascota {
     public Cliente getCliente() {
     	return cliente;
     }
+    
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
