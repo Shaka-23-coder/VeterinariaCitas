@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+import clases.Mascota;
+import datos.Datos;
 
 public class VentanaMascota extends JFrame implements ActionListener {
 
@@ -66,7 +69,7 @@ public class VentanaMascota extends JFrame implements ActionListener {
 			contentPane.add(lblTitulo);
 		}
 		{
-			lblTexto = new JLabel("Ingrese los datos del cliente:");
+			lblTexto = new JLabel("Ingrese los datos de la mascota:");
 			lblTexto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			lblTexto.setBounds(50, 55, 191, 14);
 			contentPane.add(lblTexto);
@@ -139,6 +142,26 @@ public class VentanaMascota extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnRegistrarMas_actionPerformed(ActionEvent e) {
-		
+		String nombre = txtNombre.getText();
+	    String especie = txtEspecie.getText();
+	    String raza = txtRaza.getText();
+	    int edad;
+	    if (txtNombre.getText().isEmpty() || txtEspecie.getText().isEmpty() || txtRaza.getText().isEmpty() || txtEdad.getText().isEmpty()) {
+	    	JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
+	    	return;
+	    }
+	    
+	    try {
+	    	edad = Integer.parseInt(txtEdad.getText());
+	    } catch(NumberFormatException ex) {
+	    	JOptionPane.showMessageDialog(null, "La edad debe ser un número.");
+	    	return;
+	    }
+	    
+	    Mascota mascota = new Mascota(nombre, especie, raza, edad);
+	    
+	    Datos.mascotas.add(mascota);
+	    
+	    JOptionPane.showMessageDialog(null, "Mascota registrada correctamente");
 	}
 }
