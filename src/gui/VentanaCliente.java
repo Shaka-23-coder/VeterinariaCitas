@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import clases.Cliente;
+import datos.Datos;
 
 public class VentanaCliente extends JFrame implements ActionListener {
 
@@ -147,6 +148,8 @@ public class VentanaCliente extends JFrame implements ActionListener {
 		String direccion = txtDireccion.getText();
 		
 		Cliente cliente = new Cliente(nombre, dni, telefono, direccion);
+		
+		Datos.clientes.add(cliente);
 		
 		JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
 	}
