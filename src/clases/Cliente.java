@@ -29,4 +29,9 @@ public class Cliente {
 	public String getDireccion() {
 		return direccion;
 	}
+	
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

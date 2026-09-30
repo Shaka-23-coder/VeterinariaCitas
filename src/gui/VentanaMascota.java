@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import clases.Mascota;
 import datos.Datos;
+import javax.swing.JComboBox;
+import clases.Cliente;
 
 public class VentanaMascota extends JFrame implements ActionListener {
 
@@ -32,6 +34,8 @@ public class VentanaMascota extends JFrame implements ActionListener {
 	private JTextField txtRaza;
 	private JTextField txtEdad;
 	private JButton btnRegistrarMas;
+	private JLabel lblCliente;
+	private JComboBox<Cliente> cmbCliente;
 
 	/**
 	 * Launch the application.
@@ -78,60 +82,76 @@ public class VentanaMascota extends JFrame implements ActionListener {
 			lblNombre = new JLabel("Nombre:");
 			lblNombre.setForeground(new Color(255, 0, 0));
 			lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblNombre.setBounds(99, 96, 85, 23);
+			lblNombre.setBounds(100, 72, 85, 23);
 			contentPane.add(lblNombre);
 		}
 		{
 			lblEspecie = new JLabel("Especie:");
 			lblEspecie.setForeground(Color.RED);
 			lblEspecie.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblEspecie.setBounds(297, 96, 85, 23);
+			lblEspecie.setBounds(298, 72, 85, 23);
 			contentPane.add(lblEspecie);
 		}
 		{
 			lblRaza = new JLabel("Raza:");
 			lblRaza.setForeground(Color.RED);
 			lblRaza.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblRaza.setBounds(99, 151, 85, 23);
+			lblRaza.setBounds(100, 127, 85, 23);
 			contentPane.add(lblRaza);
 		}
 		{
 			lblEdad = new JLabel("Edad:");
 			lblEdad.setForeground(Color.RED);
 			lblEdad.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblEdad.setBounds(297, 151, 85, 23);
+			lblEdad.setBounds(298, 127, 85, 23);
 			contentPane.add(lblEdad);
 		}
 		{
 			txtNombre = new JTextField();
-			txtNombre.setBounds(98, 120, 86, 20);
+			txtNombre.setBounds(99, 96, 86, 20);
 			contentPane.add(txtNombre);
 			txtNombre.setColumns(10);
 		}
 		{
 			txtEspecie = new JTextField();
 			txtEspecie.setColumns(10);
-			txtEspecie.setBounds(296, 120, 86, 20);
+			txtEspecie.setBounds(297, 96, 86, 20);
 			contentPane.add(txtEspecie);
 		}
 		{
 			txtRaza = new JTextField();
 			txtRaza.setColumns(10);
-			txtRaza.setBounds(99, 178, 86, 20);
+			txtRaza.setBounds(100, 154, 86, 20);
 			contentPane.add(txtRaza);
 		}
 		{
 			txtEdad = new JTextField();
 			txtEdad.setColumns(10);
-			txtEdad.setBounds(297, 178, 86, 20);
+			txtEdad.setBounds(298, 154, 86, 20);
 			contentPane.add(txtEdad);
 		}
 		{
 			btnRegistrarMas = new JButton("Registrar");
 			btnRegistrarMas.addActionListener(this);
 			btnRegistrarMas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			btnRegistrarMas.setBounds(195, 229, 113, 30);
+			btnRegistrarMas.setBounds(193, 260, 113, 30);
 			contentPane.add(btnRegistrarMas);
+		}
+		{
+			lblCliente = new JLabel("Cliente:");
+			lblCliente.setForeground(Color.RED);
+			lblCliente.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			lblCliente.setBounds(123, 185, 62, 23);
+			contentPane.add(lblCliente);
+		}
+		{
+			cmbCliente = new JComboBox<Cliente>();
+			cmbCliente.setBounds(123, 204, 210, 22);
+			contentPane.add(cmbCliente);
+			
+			for (Cliente cliente : Datos.clientes) {
+		    	cmbCliente.addItem(cliente);
+		    }
 		}
 
 	}
@@ -158,7 +178,9 @@ public class VentanaMascota extends JFrame implements ActionListener {
 	    	return;
 	    }
 	    
-	    Mascota mascota = new Mascota(nombre, especie, raza, edad);
+	    Cliente cliente = (Cliente) cmbCliente.getSelectedItem();
+	    
+	    Mascota mascota = new Mascota(nombre, especie, raza, edad, cliente);
 	    
 	    Datos.mascotas.add(mascota);
 	    
