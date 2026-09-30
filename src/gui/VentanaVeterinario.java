@@ -11,8 +11,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+import clases.Veterinaria;
+import datos.Datos;
 
-public class VentanaVeterinario extends JFrame {
+public class VentanaVeterinario extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -108,6 +113,7 @@ public class VentanaVeterinario extends JFrame {
 		}
 		{
 			btnRegistrarVet = new JButton("Registrar");
+			btnRegistrarVet.addActionListener(this);
 			btnRegistrarVet.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			btnRegistrarVet.setBounds(195, 229, 113, 30);
 			contentPane.add(btnRegistrarVet);
@@ -115,4 +121,25 @@ public class VentanaVeterinario extends JFrame {
 
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnRegistrarVet) {
+			do_btnRegistrarVet_actionPerformed(e);
+		}
+	}
+	protected void do_btnRegistrarVet_actionPerformed(ActionEvent e) {
+		String nombre = txtNombre.getText();
+        String especialidad = txtEspecialidad.getText();
+        String telefono = txtTelefono.getText();
+        
+        if(txtNombre.getText().isEmpty() || txtEspecialidad.getText().isEmpty() || txtTelefono.getText().isEmpty()) {
+        	JOptionPane.showMessageDialog(null, "Debe completar todos los cambios");
+        	return;
+        }
+        
+        Veterinaria veterinario = new Veterinaria(nombre, especialidad, telefono);
+        
+        Datos.veterinarios.add(veterinario);
+        
+        JOptionPane.showMessageDialog(null, "Veterinario registrado correctamente");
+	}
 }

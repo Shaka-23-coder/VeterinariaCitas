@@ -11,8 +11,10 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class VentanaMascota extends JFrame {
+public class VentanaMascota extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -123,6 +125,7 @@ public class VentanaMascota extends JFrame {
 		}
 		{
 			btnRegistrarMas = new JButton("Registrar");
+			btnRegistrarMas.addActionListener(this);
 			btnRegistrarMas.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			btnRegistrarMas.setBounds(195, 229, 113, 30);
 			contentPane.add(btnRegistrarMas);
@@ -130,4 +133,12 @@ public class VentanaMascota extends JFrame {
 
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnRegistrarMas) {
+			do_btnRegistrarMas_actionPerformed(e);
+		}
+	}
+	protected void do_btnRegistrarMas_actionPerformed(ActionEvent e) {
+		
+	}
 }
