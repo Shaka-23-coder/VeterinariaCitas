@@ -6,13 +6,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import clases.Cliente;
 
-public class VentanaCliente extends JFrame {
+public class VentanaCliente extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -123,10 +128,26 @@ public class VentanaCliente extends JFrame {
 		}
 		{
 			btnRegistrarCli = new JButton("Registrar");
+			btnRegistrarCli.addActionListener(this);
 			btnRegistrarCli.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			btnRegistrarCli.setBounds(205, 219, 113, 30);
 			contentPane.add(btnRegistrarCli);
 		}
 
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnRegistrarCli) {
+			do_btnRegistrarCli_actionPerformed(e);
+		}
+	}
+	protected void do_btnRegistrarCli_actionPerformed(ActionEvent e) {
+		String nombre = txtNombre.getText();
+		String dni = txtDocumento.getText();
+		String telefono = txtTelefono.getText();
+		String direccion = txtDireccion.getText();
+		
+		Cliente cliente = new Cliente(nombre, dni, telefono, direccion);
+		
+		JOptionPane.showMessageDialog(null, "Cliente registrado correctamente");
 	}
 }
